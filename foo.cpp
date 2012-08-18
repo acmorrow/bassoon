@@ -1,10 +1,12 @@
 #include <array>
 #include <iterator>
 #include <sstream>
-#include <bassoon/encoder.hpp>
 #include <cassert>
 #include <iostream>
 #include <iomanip>
+
+#include <bassoon/encoder.hpp>
+#include <bassoon/decoder.hpp>
 
 namespace {
 
