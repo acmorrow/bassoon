@@ -10,3 +10,9 @@
 *.lai
 *.la
 *.a
+
+# build directory
+build/*
+
+# source drop location for googletest
+src/third_party/googletest/src
