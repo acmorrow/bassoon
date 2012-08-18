@@ -1,0 +1,21 @@
+#ifndef included_d940f4cc_ec5d_46d0_9244_7220ed7dd371
+#define included_d940f4cc_ec5d_46d0_9244_7220ed7dd371
+#pragma once
+
+#include <stddef.h>
+#include <bassoon/export.h>
+
+#define BASSOON_VERSION_MAJOR @BASSOON_VERSION_MAJOR@
+#define BASSOON_VERSION_MINOR @BASSOON_VERSION_MINOR@
+
+#if defined(__cplusplus)
+extern "C" {
+#endif  // __cplusplus
+
+void LIBBASSOON_EXPORT bassoon_get_library_version(size_t* major, size_t* minor);
+
+#if defined(__cplusplus)
+}  // __cplusplus
+#endif  // __cplusplus
+
+#endif // included_d940f4cc_ec5d_46d0_9244_7220ed7dd371
