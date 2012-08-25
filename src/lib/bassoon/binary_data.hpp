@@ -19,6 +19,7 @@ namespace bassoon {
 
       // TODO(acm): Figure out more about when noexcept is deduced.
       constexpr generic_binary_data() noexcept = default;
+
       constexpr generic_binary_data(pointer_type data_, size_type size_) noexcept
         : data(data_)
         , size(size_ >= 0 ? size_ : 0) {}  // TODO(acm): Fix warning
@@ -41,7 +42,7 @@ namespace bassoon {
         : base_type(data, fixed_size) {}
     };
 
-    // BSON documents and binary objects are constrained to in32_t size.
+    // BSON documents and binary objects are constrained to int32_t size.
     using binary_data = generic_binary_data<void, std::int32_t>;
     using binary_cdata = generic_binary_data<void const, std::int32_t>;
 

@@ -6,6 +6,6 @@
 # include_directories (${Boost_INCLUDE_DIR})
 
 add_subdirectory (lib)
-# add_subdirectory (bin)
+add_subdirectory (bin)
 add_subdirectory (test)
 add_subdirectory (third_party)

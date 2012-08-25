@@ -31,8 +31,8 @@ namespace bassoon {
                     "generic_string_data is for 'char' and 'const char' only");
 
       // NOTE(acm): It is critical that 'size' incorporates the NULL
-      // byte. So for the string 'cat', the 'size' value should be
-      // 4, not 3 like strlen would say.
+      // byte. So for the string "cat", the 'size' value should be 4,
+      // not 3 like strlen would say.
       generic_string_data(pointer_type data_, size_type size_, string_data_details::null_included_tag)
         : base_type(data_, size_) {
         assert(this->data[this->size - 1] == '\0');
@@ -82,7 +82,8 @@ namespace bassoon {
     using string_data = generic_string_data<char, length_t>;
     using string_cdata = generic_string_data<char const, length_t>;
 
-    // BSON 'cstring' lengths are not constrained.
+    // BSON 'cstring' lengths are not constrained by the spec.
+    // TODO(acm): Add a configurable max length.
     // TODO(acm): Make cstring stuff check for embedded nulls in debug mode.
     using cstring_data = generic_string_data<char, std::size_t>;
     using cstring_cdata = generic_string_data<char const, std::size_t>;
