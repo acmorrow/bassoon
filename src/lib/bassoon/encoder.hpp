@@ -47,22 +47,22 @@ namespace bassoon {
       using writer_type = Writer_type;
       using cursor_type = typename writer_type::cursor;
 
-      explicit encoder(writer_type& writer) noexcept(noexcept(writer_type::position)) :
+      explicit encoder(writer_type& writer) noexcept(noexcept(std::declval<writer_type>().position)) :
         cursor_(writer.position()) {}
 
       static const length_t k_invalid_length = 0xabababab;
 
     public:
       static bool const writer_is_noexcept =
-        noexcept(writer_type::distance) &&
-        noexcept(writer_type::ok)       &&
-        noexcept(writer_type::position) &&
-        noexcept(writer_type::reserve)  &&
-        noexcept(writer_type::write)    &&
-        noexcept(writer_type::write_at);
+        noexcept(std::declval<writer_type>().distance) &&
+        noexcept(std::declval<writer_type>().ok)       &&
+        noexcept(std::declval<writer_type>().position) &&
+        noexcept(std::declval<writer_type>().reserve)  &&
+        noexcept(std::declval<writer_type>().write)    &&
+        noexcept(std::declval<writer_type>().write_at);
 
       static bool const cursor_is_noexcept =
-        noexcept(cursor_type::writer);
+        noexcept(std::declval<cursor_type>().writer);
 
       static bool const is_noexcept =
         writer_is_noexcept &&
@@ -87,7 +87,7 @@ namespace bassoon {
       // body here seems to worsen codegen.
       virtual ~encoder() noexcept = default;
 
-      virtual bool ok() const noexcept(noexcept(writer_type::ok)) override {
+      virtual bool ok() const noexcept(noexcept(std::declval<writer_type>().ok)) override {
         return writer().ok();
       }
 
@@ -582,7 +582,7 @@ namespace bassoon {
 
     template<typename writer_type>
     encoder<writer_type> start_document(writer_type& writer)
-      noexcept(noexcept(encoder<writer_type>::start_document)) {
+      noexcept(noexcept(std::declval<encoder<writer_type>>().start_document(writer))) {
       return encoder<writer_type>::start_document(writer);
     }
 
