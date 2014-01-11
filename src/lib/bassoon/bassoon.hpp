@@ -1,6 +1,4 @@
 #ifndef included_4857aebe_4441_455a_8a39_37377e0cddfd
 #define included_4857aebe_4441_455a_8a39_37377e0cddfd
 
-#define BASSOON_DEPRECATED_API __attribute__((deprecated))
-
 #endif // included_4857aebe_4441_455a_8a39_37377e0cddfd

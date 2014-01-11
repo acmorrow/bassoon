@@ -157,7 +157,7 @@ namespace bassoon {
         binary_element_encoder().encode(writer(), name, subtype, data);
       }
 
-      virtual void encode_undefined(cstring_cdata name) noexcept(is_noexcept) final override BASSOON_DEPRECATED_API {
+      virtual void encode_undefined(cstring_cdata name) noexcept(is_noexcept) final override LIBBASSOON_DEPRECATED {
         undefined_element_encoder().encode(writer(), name);
       }
 
@@ -181,7 +181,7 @@ namespace bassoon {
         regex_element_encoder().encode(writer(), name, regex, options);
       }
 
-      virtual void encode_db_pointer(cstring_cdata name, string_cdata dbname, object_id_cdata id) noexcept(is_noexcept) final override BASSOON_DEPRECATED_API {
+      virtual void encode_db_pointer(cstring_cdata name, string_cdata dbname, object_id_cdata id) noexcept(is_noexcept) final override LIBBASSOON_DEPRECATED {
         db_pointer_element_encoder().encode(writer(), name, dbname, id);
       }
 

@@ -116,7 +116,7 @@ namespace bassoon {
       /// Encodes an undefined element into the current document as
       /// 'name'.
       ///
-      virtual void encode_undefined(cstring_cdata name) BASSOON_DEPRECATED_API = 0;
+      virtual void encode_undefined(cstring_cdata name) LIBBASSOON_DEPRECATED = 0;
 
       ///
       /// Encodes the given object id 'id' into the current document
@@ -153,7 +153,7 @@ namespace bassoon {
       /// Encodes the given name 'dbname' and object id 'id' into the
       /// current document as 'name'.
       ///
-      virtual void encode_db_pointer(cstring_cdata name, string_cdata dbname, object_id_cdata id) BASSOON_DEPRECATED_API = 0;
+      virtual void encode_db_pointer(cstring_cdata name, string_cdata dbname, object_id_cdata id) LIBBASSOON_DEPRECATED = 0;
 
       ///
       /// Encode the given string data 'code' as javascript into the

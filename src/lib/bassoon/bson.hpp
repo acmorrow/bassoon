@@ -5,7 +5,7 @@
 #include <climits>
 #include <type_traits>
 
-#include <bassoon/bassoon.hpp>
+#include <bassoon/export.hpp>
 
 namespace bassoon {
   namespace bson {
@@ -35,14 +35,14 @@ namespace bassoon {
       array                             = 0x04,
       binary                            = 0x05,
       undefined_no_deprecated           = 0x06,
-      undefined BASSOON_DEPRECATED_API  = undefined_no_deprecated,
+      undefined LIBBASSOON_DEPRECATED   = undefined_no_deprecated,
       object_id                         = 0x07,
       boolean                           = 0x08,
       utc_datetime                      = 0x09,
       null                              = 0x0A,
       regex                             = 0x0B,
       db_pointer_no_deprecated          = 0x0C,
-      db_pointer BASSOON_DEPRECATED_API = db_pointer_no_deprecated,
+      db_pointer LIBBASSOON_DEPRECATED  = db_pointer_no_deprecated,
       javascript                        = 0x0D,
       symbol                            = 0x0E,
       scoped_javascript                 = 0x0F,
