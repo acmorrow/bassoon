@@ -1,6 +1,5 @@
 #ifndef included_c68a1e82_cccc_4cfe_af5e_cbb28bb63076
 #define included_c68a1e82_cccc_4cfe_af5e_cbb28bb63076
-#pragma once
 
 namespace bassoon {
   namespace bson {

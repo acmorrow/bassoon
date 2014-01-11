@@ -1,6 +1,5 @@
 #ifndef included_0d05e359_97ab_4ce9_a6a8_113d7f68113d
 #define included_0d05e359_97ab_4ce9_a6a8_113d7f68113d
-#pragma once
 
 #include <cinttypes>
 #include <type_traits>

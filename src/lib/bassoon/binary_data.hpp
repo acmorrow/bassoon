@@ -1,6 +1,5 @@
 #ifndef included_aac9c4fd_b3ec_4c13_843a_a9e953659e64
 #define included_aac9c4fd_b3ec_4c13_843a_a9e953659e64
-#pragma once
 
 #include <type_traits>
 #include <bassoon/bson.hpp>

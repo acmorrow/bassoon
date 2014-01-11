@@ -1,6 +1,5 @@
 #ifndef included_596bb6f0_d143_43d5_bf8e_cc2635f210f0
 #define included_596bb6f0_d143_43d5_bf8e_cc2635f210f0
-#pragma once
 
 //#if defined(_BSD_SOURCE)
 //#include <endian.h>

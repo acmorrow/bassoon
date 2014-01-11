@@ -1,6 +1,5 @@
 #ifndef included_b45d4065_193d_46de_a180_e0c5a5763627
 #define included_b45d4065_193d_46de_a180_e0c5a5763627
-#pragma once
 
 #include <cassert>
 #include <type_traits>

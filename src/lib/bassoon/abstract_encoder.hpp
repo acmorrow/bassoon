@@ -1,6 +1,5 @@
 #ifndef included_4eacc70e_583d_4044_895e_271ed97bdb63
 #define included_4eacc70e_583d_4044_895e_271ed97bdb63
-#pragma once
 
 #include <memory>
 

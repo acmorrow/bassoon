@@ -1,6 +1,5 @@
 #ifndef included_39aff450_bcc8_43ef_bcce_7f70a51b2623
 #define included_39aff450_bcc8_43ef_bcce_7f70a51b2623
-#pragma once
 
 #include <inttypes.h>
 #include <bassoon/bassoon.h>

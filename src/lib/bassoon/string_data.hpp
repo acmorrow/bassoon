@@ -1,6 +1,5 @@
 #ifndef included_790cd424_d203_44d1_b557_dd1df7b76613
 #define included_790cd424_d203_44d1_b557_dd1df7b76613
-#pragma once
 
 #include <cassert>
 #include <cstdlib>
