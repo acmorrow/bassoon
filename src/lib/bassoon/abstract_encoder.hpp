@@ -31,7 +31,7 @@ namespace bassoon {
     /// There must be no more than one unfinished subdocument or
     /// subarray active on a given abstract_encoder.
 
-    class abstract_encoder {
+    class LIBBASSOON_EXPORT abstract_encoder {
     public:
       virtual ~abstract_encoder() = default;
 
