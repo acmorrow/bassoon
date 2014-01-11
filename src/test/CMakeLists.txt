@@ -6,6 +6,7 @@ include_directories (${PROJECT_SOURCE_DIR}/src/third_party/googletest/src/includ
 macro (create_test suite_name test_name)
   add_executable (${test_name} ${test_name}.cpp)
   target_link_libraries (${test_name} libbassoon gtest gtest_main)
+  install (TARGETS ${test_name} DESTINATION bin/tests COMPONENT tests)
   add_test (${suite_name}.${test_name} ${test_name})
 endmacro ()
 
