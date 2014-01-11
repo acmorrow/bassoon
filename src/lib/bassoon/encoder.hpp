@@ -22,7 +22,9 @@ namespace bassoon {
     ///
     template<typename writer_type>
     encoder<writer_type> start_document(writer_type& writer)
-      noexcept(noexcept(encoder<writer_type>::start_document));
+      noexcept(noexcept(std::declval<encoder<writer_type>>().start_document(writer))) {
+      return encoder<writer_type>::start_document(writer);
+    }
 
     ///
     /// The concrete BSON encoder. This class derives from
@@ -578,12 +580,6 @@ namespace bassoon {
 
     template<typename writer_type>
     const length_t encoder<writer_type>::k_invalid_length;
-
-    template<typename writer_type>
-    encoder<writer_type> start_document(writer_type& writer)
-      noexcept(noexcept(std::declval<encoder<writer_type>>().start_document(writer))) {
-      return encoder<writer_type>::start_document(writer);
-    }
 
   }  // namespace bson
 }  // namespace bassoon
