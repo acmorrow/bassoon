@@ -5,6 +5,7 @@
 #include <type_traits>
 
 #include <bassoon/abstract_encoder.hpp>
+#include <bassoon/debug.hpp>
 #include <bassoon/endian.hpp>
 
 namespace bassoon {

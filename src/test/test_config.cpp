@@ -1,4 +1,5 @@
-#include <bassoon/config.h>
+#include <bassoon/config.hpp>
+
 #include <gtest/gtest.h>
 
 namespace {

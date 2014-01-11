@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 
-#include <bassoon/debug.hpp>
 #include <bassoon/encoder.hpp>
 #include <bassoon/array_writer.hpp>
 

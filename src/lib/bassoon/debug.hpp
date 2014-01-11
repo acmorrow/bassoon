@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <iosfwd>
 
-#include <bassoon/export.h>
+#include <bassoon/export.hpp>
 
 namespace bassoon {
   namespace bson {
