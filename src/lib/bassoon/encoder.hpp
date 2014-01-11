@@ -290,7 +290,7 @@ namespace bassoon {
                       "integral_type must be integral");
 
         static void encode(writer_type& writer, integral_type value) noexcept(is_noexcept) {
-          auto converted = host_to_little_endian(value);
+          auto converted = endian::native_to_little(value);
           wrap(writer)
             .template encode_with<value_encoder<integral_type>>(converted);
         }
@@ -568,7 +568,7 @@ namespace bassoon {
       }
 
       static length_t read_length_from_document(void const* document) {
-        return little_endian_to_host(read_length_from_address(document));
+        return endian::little_to_native(read_length_from_address(document));
       }
 
       // NOTE(acm): This is the only state in the encoder. It stores a

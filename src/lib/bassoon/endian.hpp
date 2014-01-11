@@ -1,35 +1,103 @@
 #ifndef included_596bb6f0_d143_43d5_bf8e_cc2635f210f0
 #define included_596bb6f0_d143_43d5_bf8e_cc2635f210f0
 
-//#if defined(_BSD_SOURCE)
-//#include <endian.h>
-//#if 1 //if defined(_DARWIN_SOURCE)
-#include <libkern/OSByteOrder.h>
-//#endif
-//#endif
+// It is sad that we are still doing this in 2014 :(
+#if defined(__linux__)
+#  include <endian.h>
+#elif defined(__FreeBSD__) || defined(__NetBSD__)
+#  include <sys/endian.h>
+#elif defined(__OpenBSD__)
+#  include <sys/types.h>
+#  define le16toh(x) letoh16(x)
+#  define le32toh(x) letoh32(x)
+#  define le64toh(x) letoh64(x)
+#elif defined(__APPLE__)
+#  include <libkern/OSByteOrder.h>
+#  define le16toh(x) OSSwapLittleToHostInt16(x)
+#  define le32toh(x) OSSwapLittleToHostInt32(x)
+#  define le64toh(x) OSSwapLittleToHostInt64(x)
+#  define htole16(x) OSSwapHostToLittleInt16(x)
+#  define htole32(x) OSSwapHostToLittleInt32(x)
+#  define htole64(x) OSSwapHostToLittleInt64(x)
+#endif
 
-#include <bassoon/bson.hpp>
+#include <cinttypes>
 
 namespace bassoon {
-  namespace bson {
-    // BSON stores integers in little endian format.
-//#ifdef _BSD_SOURCE
-//#if 1 defined(__DARWIN_SOURCE)
-    inline int32_t host_to_little_endian(int32_t value) { return OSSwapHostToLittleInt32(value); }
-    inline int64_t host_to_little_endian(int64_t value) { return OSSwapHostToLittleInt64(value); }
-    inline int32_t little_endian_to_host(int32_t value) { return OSSwapLittleToHostInt32(value); }
-    inline int64_t little_endian_to_host(int64_t value) { return OSSwapLittleToHostInt64(value); }
-// #else
-//     inline int32_t host_to_little_endian(int32_t value) { return htole32(value); }
-//     inline int64_t host_to_little_endian(int64_t value) { return htole64(value); }
-//     inline int32_t little_endian_to_host(int32_t value) { return le32toh(value); }
-//     inline int64_t little_endian_to_host(int64_t value) { return le64toh(value); }
-// #endif
-// #else
-// #error "bassoon: I don't know how to do byte order on this platform!"
-// #endif
+namespace endian {
 
-  }  // namespace bson
-}  // namespace bassoon
+    template<typename T>
+    struct converter;
+
+    template<>
+    struct converter<std::uint8_t> {
+
+        using T = std::uint8_t;
+
+        inline static T native_to_little(T t) {
+            return t;
+        }
+
+        inline static T little_to_native(T t) {
+            return t;
+        }
+    };
+
+    template<>
+    struct converter<std::uint16_t> {
+
+        using T = std::uint16_t;
+
+        inline static T native_to_little(T t) {
+            return htole16(t);
+        }
+
+        inline static T little_to_native(T t) {
+            return le16toh(t);
+        }
+    };
+
+    template<>
+    struct converter<std::uint32_t> {
+
+        using T = std::uint32_t;
+
+        inline static T native_to_little(T t) {
+            return htole32(t);
+        }
+
+        inline static T little_to_native(T t) {
+            return le32toh(t);
+        }
+    };
+
+    template<>
+    struct converter<std::uint64_t> {
+
+        using T = std::uint64_t;
+
+        inline static T native_to_little(T t) {
+            return htole64(t);
+        }
+
+        inline static T little_to_native(T t) {
+            return le64toh(t);
+        }
+    };
+
+    template<typename T>
+    T native_to_little(T t) {
+        typedef typename std::make_unsigned<T>::type UT;
+        return converter<UT>::native_to_little(*reinterpret_cast<UT*>(&t));
+    }
+
+    template<typename T>
+    T little_to_native(T t) {
+        typedef typename std::make_unsigned<T>::type UT;
+        return converter<UT>::native_to_little(*reinterpret_cast<UT*>(&t));
+    }
+
+} // namespace endian
+} // namespace bassoon
 
 #endif // included_596bb6f0_d143_43d5_bf8e_cc2635f210f0
