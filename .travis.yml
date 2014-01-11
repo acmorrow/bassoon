@@ -2,7 +2,7 @@ language: cpp
 script:
     - mkdir build && cd build
     - cmake -DCMAKE_BUILD_TYPE=Debug -G Ninja ..
-    - ninja all && ninja test
+    - make all && make test
 compiler:
     - clang
     - gcc
