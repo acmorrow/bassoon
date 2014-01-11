@@ -14,7 +14,7 @@ namespace bassoon {
     };
 
     template<typename Reader_type, typename Handler_type>
-    class decoder final : public abstract_decoder {
+    class decoder : public abstract_decoder {
 
     public:
       using reader_type = Reader_type;

@@ -43,7 +43,7 @@ namespace bassoon {
     /// See @abstract_encoder for documentations on most of the methods
     /// of this class.
     template<typename Writer_type>
-    class encoder final : public abstract_encoder {
+    class encoder : public abstract_encoder {
 
       using writer_type = Writer_type;
       using cursor_type = typename writer_type::cursor;
@@ -86,25 +86,25 @@ namespace bassoon {
       // here that checks that the sentinel was correctly overwritten,
       // as this would detect the failure to call 'finish' but any
       // body here seems to worsen codegen.
-      virtual ~encoder() noexcept = default;
+      virtual ~encoder() noexcept final override = default;
 
-      virtual bool ok() const noexcept(noexcept(std::declval<writer_type>().ok)) override {
+      virtual bool ok() const noexcept(noexcept(std::declval<writer_type>().ok)) final override {
         return writer().ok();
       }
 
-      virtual void encode_floating_point(cstring_cdata name, double_t value) noexcept(is_noexcept) override {
+      virtual void encode_floating_point(cstring_cdata name, double_t value) noexcept(is_noexcept) final override {
         floating_point_element_encoder().encode(writer(), name, value);
       }
 
-      virtual void encode_utf8_string(cstring_cdata name, string_cdata value) noexcept(is_noexcept) override {
+      virtual void encode_utf8_string(cstring_cdata name, string_cdata value) noexcept(is_noexcept) final override {
         utf8_string_element_encoder().encode(writer(), name, value);
       }
 
-      virtual void encode_subdocument(cstring_cdata name, void const* subdocument) noexcept(is_noexcept) override {
+      virtual void encode_subdocument(cstring_cdata name, void const* subdocument) noexcept(is_noexcept) final override {
         document_element_encoder().encode(writer(), name, subdocument);
       }
 
-      virtual void encode_as_subdocument(cstring_cdata name, binary_cdata data) noexcept(is_noexcept) override {
+      virtual void encode_as_subdocument(cstring_cdata name, binary_cdata data) noexcept(is_noexcept) final override {
         document_element_encoder().encode(writer(), name, data);
       }
 
@@ -126,11 +126,11 @@ namespace bassoon {
         return new_document;
       }
 
-      virtual void encode_subarray(cstring_cdata name, void const* subarray) noexcept(is_noexcept) override {
+      virtual void encode_subarray(cstring_cdata name, void const* subarray) noexcept(is_noexcept) final override {
         array_element_encoder().encode(writer(), name, subarray);
       }
 
-      virtual void encode_as_subarray(cstring_cdata name, binary_cdata data) noexcept(is_noexcept) override {
+      virtual void encode_as_subarray(cstring_cdata name, binary_cdata data) noexcept(is_noexcept) final override {
         array_element_encoder().encode(writer(), name, data);
       }
 
@@ -156,67 +156,67 @@ namespace bassoon {
         binary_element_encoder().encode(writer(), name, subtype, data);
       }
 
-      virtual void encode_undefined(cstring_cdata name) noexcept(is_noexcept) override BASSOON_DEPRECATED_API {
+      virtual void encode_undefined(cstring_cdata name) noexcept(is_noexcept) final override BASSOON_DEPRECATED_API {
         undefined_element_encoder().encode(writer(), name);
       }
 
-      virtual void encode_object_id(cstring_cdata name, object_id_cdata id) noexcept(is_noexcept) override {
+      virtual void encode_object_id(cstring_cdata name, object_id_cdata id) noexcept(is_noexcept) final override {
         object_id_element_encoder().encode(writer(), name, id);
       }
 
-      virtual void encode_boolean(cstring_cdata name, bool value) noexcept(is_noexcept) override {
+      virtual void encode_boolean(cstring_cdata name, bool value) noexcept(is_noexcept) final override {
         boolean_element_encoder().encode(writer(), name, value);
       }
 
-      virtual void encode_utc_datetime(cstring_cdata name, int64_t value) noexcept(is_noexcept) override {
+      virtual void encode_utc_datetime(cstring_cdata name, int64_t value) noexcept(is_noexcept) final override {
         utc_datetime_element_encoder().encode(writer(), name, value);
       }
 
-      virtual void encode_null(cstring_cdata name) noexcept(is_noexcept) override {
+      virtual void encode_null(cstring_cdata name) noexcept(is_noexcept) final override {
         null_element_encoder().encode(writer(), name);
       }
 
-      virtual void encode_regex(cstring_cdata name, cstring_cdata regex, cstring_cdata options) noexcept(is_noexcept) override {
+      virtual void encode_regex(cstring_cdata name, cstring_cdata regex, cstring_cdata options) noexcept(is_noexcept) final override {
         regex_element_encoder().encode(writer(), name, regex, options);
       }
 
-      virtual void encode_db_pointer(cstring_cdata name, string_cdata dbname, object_id_cdata id) noexcept(is_noexcept) override BASSOON_DEPRECATED_API {
+      virtual void encode_db_pointer(cstring_cdata name, string_cdata dbname, object_id_cdata id) noexcept(is_noexcept) final override BASSOON_DEPRECATED_API {
         db_pointer_element_encoder().encode(writer(), name, dbname, id);
       }
 
-      virtual void encode_javascript(cstring_cdata name, string_cdata code) noexcept(is_noexcept) override {
+      virtual void encode_javascript(cstring_cdata name, string_cdata code) noexcept(is_noexcept) final override {
         javascript_element_encoder().encode(writer(), name, code);
       }
 
-      virtual void encode_symbol(cstring_cdata name, string_cdata symbol) noexcept(is_noexcept) override {
+      virtual void encode_symbol(cstring_cdata name, string_cdata symbol) noexcept(is_noexcept) final override {
         symbol_element_encoder().encode(writer(), name, symbol);
       }
 
-      virtual void encode_scoped_javascript(cstring_cdata name, string_cdata code, void const* scope) noexcept(is_noexcept) override  {
+      virtual void encode_scoped_javascript(cstring_cdata name, string_cdata code, void const* scope) noexcept(is_noexcept) final override  {
         scoped_javascript_element_encoder().encode(writer(), name, code, scope);
       }
 
-      virtual void encode_int32(cstring_cdata name, std::int32_t value) noexcept(is_noexcept) override {
+      virtual void encode_int32(cstring_cdata name, std::int32_t value) noexcept(is_noexcept) final override {
         int32_element_encoder().encode(writer(), name, value);
       }
 
-      virtual void encode_timestamp(cstring_cdata name, std::int64_t value) noexcept(is_noexcept) override {
+      virtual void encode_timestamp(cstring_cdata name, std::int64_t value) noexcept(is_noexcept) final override {
         timestamp_element_encoder().encode(writer(), name, value);
       }
 
-      virtual void encode_int64(cstring_cdata name, std::int64_t value) noexcept(is_noexcept) override {
+      virtual void encode_int64(cstring_cdata name, std::int64_t value) noexcept(is_noexcept) final override {
         int64_element_encoder().encode(writer(), name, value);
       }
 
-      virtual void encode_min_key(cstring_cdata name) noexcept(is_noexcept) override {
+      virtual void encode_min_key(cstring_cdata name) noexcept(is_noexcept) final override {
         min_element_encoder().encode(writer(), name);
       }
 
-      virtual void encode_max_key(cstring_cdata name) noexcept(is_noexcept) override {
+      virtual void encode_max_key(cstring_cdata name) noexcept(is_noexcept) final override {
         max_element_encoder().encode(writer(), name);
       }
 
-      virtual void finish() noexcept(is_noexcept) override {
+      virtual void finish() noexcept(is_noexcept) final override {
         wrapped_writer().
           template encode_with<null_byte_encoder>();
         length_t const written = writer().distance(cursor_, writer().position());
@@ -509,21 +509,21 @@ namespace bassoon {
 
       // NOTE(acm): These are the hooks that let us work with an
       // encoder via the abstract_encoder interface.
-      virtual std::unique_ptr<abstract_encoder> clone() const override {
+      virtual std::unique_ptr<abstract_encoder> clone() const final override {
         return std::unique_ptr<encoder>(new encoder(writer()));
       }
 
-      virtual void private_start_document() noexcept(is_noexcept) override {
+      virtual void private_start_document() noexcept(is_noexcept) final override {
         wrapped_writer()
           .template encode_with<document_start_encoder>();
       }
 
-      virtual void private_start_subdocument(cstring_cdata name) noexcept(is_noexcept) override {
+      virtual void private_start_subdocument(cstring_cdata name) noexcept(is_noexcept) final override {
         wrapped_writer()
           .template encode_with<fixed_type_and_name_encoder<types::document>>(name);
       }
 
-      virtual void private_start_subarray(cstring_cdata name) noexcept(is_noexcept) override {
+      virtual void private_start_subarray(cstring_cdata name) noexcept(is_noexcept) final override {
         wrapped_writer()
           .template encode_with<fixed_type_and_name_encoder<types::array>>(name);
       }
