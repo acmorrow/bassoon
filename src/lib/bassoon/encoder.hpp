@@ -254,7 +254,8 @@ namespace bassoon {
       template<typename value_type>
       struct value_encoder {
 
-        static_assert(std::is_trivially_copyable<value_type>::value,
+        // NOTE: This should say is_trivially_copyable, but libstdc++ doesn't have that yet.
+        static_assert(std::is_trivial<value_type>::value,
                       "value_type must be trivially copyable");
 
         static void encode(writer_type& writer, value_type value) noexcept(is_noexcept) {
