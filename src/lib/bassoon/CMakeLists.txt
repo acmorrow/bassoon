@@ -2,9 +2,6 @@ set (libbassoon_version_major 0)
 set (libbassoon_version_minor 1)
 set (libbassoon_version_patch 0)
 
-include_directories (${PROJECT_SOURCE_DIR}/src/lib)
-include_directories (${PROJECT_BINARY_DIR}/src/lib)
-
 file (GLOB libbassoon_headers *.hpp)
 file (GLOB libbassoon_sources *.cpp)
 

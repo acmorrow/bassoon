@@ -17,6 +17,9 @@ set (CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} -O3 -flto
 set (INTERPROCEDURAL_OPTIMIZATION_RELEASE ON)
 set (INTERPROCEDURAL_OPTIMIZATION_RELWITHDEBINFO ON)
 
+include_directories (${PROJECT_SOURCE_DIR}/src/lib)
+include_directories (${PROJECT_BINARY_DIR}/src/lib)
+
 add_subdirectory (lib)
 add_subdirectory (bin)
 add_subdirectory (test)

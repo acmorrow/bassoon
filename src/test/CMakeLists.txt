@@ -1,6 +1,3 @@
-include_directories (${PROJECT_SOURCE_DIR}/src/lib)
-include_directories (${PROJECT_BINARY_DIR}/src/lib)
-
 # Get and build gtest
 
 include(ExternalProject)
