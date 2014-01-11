@@ -23,5 +23,5 @@ generate_export_header (libbassoon
   EXPORT_FILE_NAME export.hpp)
 list (APPEND libbassoon_headers ${CMAKE_CURRENT_BINARY_DIR}/export.hpp)
 
-install (TARGETS libbassoon DESTINATION lib)
-install (FILES ${libbassoon_headers} DESTINATION include/bassoon)
+install (TARGETS libbassoon DESTINATION lib COMPONENT runtime)
+install (FILES ${libbassoon_headers} DESTINATION include/bassoon COMPONENT dev)
