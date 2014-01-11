@@ -2,77 +2,67 @@
 #define included_0d05e359_97ab_4ce9_a6a8_113d7f68113d
 
 #include <cinttypes>
+#include <climits>
 #include <type_traits>
 
-#include <bassoon/bassoon.h>
-#include <bassoon/bson.h>
+#include <bassoon/bassoon.hpp>
 
 namespace bassoon {
   namespace bson {
 
-    using byte_t   = bassoon_bson_byte_t;
-    using length_t = bassoon_bson_length_t;
-    using double_t = bassoon_bson_double_t;
+    using byte_t   = uint8_t;
+    using length_t = int32_t;
+    using double_t = double;
 
     static_assert(
-      std::is_same<std::uint8_t, byte_t>::value,
-      "bassoon: fundamental type for 'byte' does not match C++11 std::uint8_t type");
-
-    static_assert(
-      sizeof(length_t) == 4,
-      "bassoon: fundamental length type is not 4 bytes");
-
-    static_assert(
-      std::is_signed<length_t>::value,
-      "bassoon: fundamental length type is not signed");
+        CHAR_BIT == 8,
+        "bassoon: requires 8 bit bytes");
 
     static_assert(
       sizeof(double_t) == 8,
       "bassoon: fundamental double type is not 8 bytes");
 
     enum class values : byte_t {
-      null   = bassoon_bson_null_byte,
-      false_ = bassoon_bson_false_byte,
-      true_  = bassoon_bson_true_byte
+      null   = 0x0,
+      false_ = 0x0,
+      true_  = 0x1
     };
 
     enum class types : byte_t {
-      floating_point                    = bassoon_bson_type_floating_point,
-      utf8_string                       = bassoon_bson_type_utf8_string,
-      document                          = bassoon_bson_type_document,
-      array                             = bassoon_bson_type_array,
-      binary                            = bassoon_bson_type_binary,
-      undefined_no_deprecated           = bassoon_bson_type_undefined_no_deprecated,
+      floating_point                    = 0x01,
+      utf8_string                       = 0x02,
+      document                          = 0x03,
+      array                             = 0x04,
+      binary                            = 0x05,
+      undefined_no_deprecated           = 0x06,
       undefined BASSOON_DEPRECATED_API  = undefined_no_deprecated,
-      object_id                         = bassoon_bson_type_object_id,
-      boolean                           = bassoon_bson_type_boolean,
-      utc_datetime                      = bassoon_bson_type_utc_datetime,
-      null                              = bassoon_bson_type_null,
-      regex                             = bassoon_bson_type_regex,
-      db_pointer_no_deprecated          = bassoon_bson_type_db_pointer_no_deprecated,
+      object_id                         = 0x07,
+      boolean                           = 0x08,
+      utc_datetime                      = 0x09,
+      null                              = 0x0A,
+      regex                             = 0x0B,
+      db_pointer_no_deprecated          = 0x0C,
       db_pointer BASSOON_DEPRECATED_API = db_pointer_no_deprecated,
-      javascript                        = bassoon_bson_type_javascript,
-      symbol                            = bassoon_bson_type_symbol,
-      scoped_javascript                 = bassoon_bson_type_scoped_javascript,
-      int32                             = bassoon_bson_type_int32,
-      timestamp                         = bassoon_bson_type_timestamp,
-      int64                             = bassoon_bson_type_int64,
-      min                               = bassoon_bson_type_min,
-      max                               = bassoon_bson_type_max
+      javascript                        = 0x0D,
+      symbol                            = 0x0E,
+      scoped_javascript                 = 0x0F,
+      int32                             = 0x10,
+      timestamp                         = 0x11,
+      int64                             = 0x12,
+      min                               = 0xFF,
+      max                               = 0x7F
     };
 
     enum class binary_subtypes : byte_t {
-      generic   = bassoon_bson_binary_subtype_generic,
-      function  = bassoon_bson_binary_subtype_function,
-      oldbinary = bassoon_bson_binary_subtype_oldbinary,
-      uuid      = bassoon_bson_binary_subtype_uuid,
-      md5       = bassoon_bson_binary_subtype_md5,
-      user      = bassoon_bson_binary_subtype_user
+      generic   = 0x00,
+      function  = 0x01,
+      oldbinary = 0x02,
+      uuid      = 0x03,
+      md5       = 0x05,
+      user      = 0x80
     };
 
-    const std::size_t k_object_id_length = bassoon_bson_k_object_id_length;
-
-    const bool k_debug = (bassoon_bson_k_debug != 0);
+    const std::size_t k_object_id_length = 12U;
 
   }  // namespace bson
 }  // namespace bassoon

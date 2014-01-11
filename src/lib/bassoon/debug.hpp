@@ -9,6 +9,12 @@
 namespace bassoon {
   namespace bson {
 
+#if defined(NDEBUG)
+    const int k_debug = 0;
+#else
+    const int k_debug = 1;
+#endif  // NDEBUG
+
     ///
     /// Dumps 'length' number of bytes from 'data' to the stream 'stream'. The format
     /// is \\xXX where XX is a hex code.

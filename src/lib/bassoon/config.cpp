@@ -1,4 +1,4 @@
-#include <bassoon/config.h>
+#include <bassoon/config.hpp>
 
 void bassoon_get_library_version(size_t* major, size_t* minor) {
   if (major)

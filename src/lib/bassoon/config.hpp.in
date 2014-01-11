@@ -2,7 +2,7 @@
 #define included_d940f4cc_ec5d_46d0_9244_7220ed7dd371
 
 #include <stddef.h>
-#include <bassoon/export.h>
+#include <bassoon/export.hpp>
 
 #define BASSOON_VERSION_MAJOR @BASSOON_VERSION_MAJOR@
 #define BASSOON_VERSION_MINOR @BASSOON_VERSION_MINOR@
