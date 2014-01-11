@@ -2,6 +2,7 @@
 #define included_848339ba_80e8_4f7c_827c_35433d656691
 
 #include <array>
+#include <cstring>
 
 #include <bassoon/linear_cursor.hpp>
 
