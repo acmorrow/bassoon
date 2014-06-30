@@ -68,16 +68,6 @@ namespace bassoon {
       virtual encoder_interface& encode_as_subdocument(cstring_cdata name, binary_cdata data) = 0;
 
       ///
-      /// Begin a new subdocument of the current document as
-      /// 'name'. You should only use abstract_start_subdocument if
-      /// you do not have the concrete encoder type (i.e. you only
-      /// have this abstract interface), since this incurrs a dynamic
-      /// allocation, whereas the concrete encoder can avoid that
-      /// overyead. Hence the ugly name.
-      ///
-      // std::unique_ptr<encoder_interface> abstract_start_subdocument(cstring_cdata name);
-
-      ///
       /// Encodes 'subarray' into the current document as 'name'. The
       /// method assumes that 'data' points to a valid BSON array
       /// document, which means that the first four bytes are a little
@@ -93,16 +83,6 @@ namespace bassoon {
       /// copied.
       ///
       virtual encoder_interface& encode_as_subarray(cstring_cdata name, binary_cdata data) = 0;
-
-      ///
-      /// Begin a new subarray of the current document as
-      /// 'name'. You should only use abstract_start_subdocument if
-      /// you do not have the concrete encoder type (i.e. you only
-      /// have this abstract interface), since this incurrs a dynamic
-      /// allocation, whereas the concrete encoder can avoid that
-      /// overyead. Hence the ugly name.
-      ///
-      //inline std::unique_ptr<encoder_interface> abstract_start_subarray(cstring_cdata name);
 
       ///
       /// Encodes the provided binary data into the current docuemtn
