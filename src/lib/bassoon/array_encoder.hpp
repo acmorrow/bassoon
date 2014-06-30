@@ -19,7 +19,7 @@ namespace bassoon {
     } // namespace details
 
 
-    class array_encoder_base {
+    class LIBBASSOON_EXPORT array_encoder_base {
     protected:
       array_encoder_base()
         : index_() {}

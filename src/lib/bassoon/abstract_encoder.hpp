@@ -188,7 +188,7 @@ namespace bassoon {
       encoder_interface() = default;
     };
 
-    class abstract_encoder : public encoder_interface {
+    class LIBBASSOON_EXPORT abstract_encoder : public encoder_interface {
     public:
         virtual ~abstract_encoder() = default;
 
