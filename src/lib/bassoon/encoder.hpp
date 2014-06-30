@@ -33,10 +33,7 @@ namespace bassoon {
     /// The concrete BSON encoder. This class derives from
     /// encoder_interface, but is final, meaning that if you have the
     /// static type of your writer the compiler is free to
-    /// devirtualize the calls. In that case you should also prefer to
-    /// use 'start_subdocument' to 'abstract_start_subdocument', and
-    /// 'start_subarray' to 'abstract_start_subarray', since this
-    /// classes versions require no dynamic allocation.
+    /// devirtualize the calls.
     ///
     /// The encoder relies on the underyling writer type to abstract
     /// away memory policy. The encoder will continue to write as long
