@@ -1,12 +1,9 @@
 #include <array>
-#include <iterator>
-#include <sstream>
-#include <cassert>
 #include <iostream>
-#include <iomanip>
 
 #include <bassoon/array_encoder.hpp>
 #include <bassoon/array_writer.hpp>
+#include <bassoon/concrete_encoder.hpp>
 #include <bassoon/debug.hpp>
 #include <bassoon/encoder.hpp>
 
