@@ -45,21 +45,23 @@ namespace {
     return document.ok();
   }
 
-  bool do_nested_abstract(std::ostream& stream) __attribute__((noinline));
-  bool do_nested_abstract(std::ostream& stream) {
+  bool do_nested_concrete(std::ostream& stream) __attribute__((noinline));
+  bool do_nested_concrete(std::ostream& stream) {
     // { "message" : { "hello" : "world" } }
     std::array<char, 128> buffer;
     auto writer = make_array_writer(buffer);
-    auto document = start_document(writer);
-    auto message = document.abstract_start_subdocument("message");
-    message->encode_utf8_string("hello", "world");
-    message->finish();
-    document.finish();
+
+    const bool ok = concrete_encoder<decltype(writer)>(writer)
+        .start_subdocument("message")
+        .encode_utf8_string("hello", "world")
+        .finish()
+        .finish()
+        .ok();
 
     dump_bytes_as_hex(stream, buffer.begin(), writer.valid());
     std::cout << "\n";
 
-    return document.ok();
+    return ok;
   }
 
   bool do_array(std::ostream& stream) __attribute__((noinline));
@@ -85,7 +87,7 @@ namespace {
 int main(int argc, char* argv[]) {
   do_example(std::cout);
   do_nested_example(std::cout);
-  do_nested_abstract(std::cout);
+  do_nested_concrete(std::cout);
   do_array(std::cout);
   return EXIT_SUCCESS;
 }
